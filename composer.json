@@ -1,0 +1,12 @@
+{
+    "name": "gyvastis/php-imdb-api",
+    "description": "IMDb movie details scraper.",
+    "type": "api",
+    "authors": [
+        {
+            "name": "Vaidas",
+            "email": "shibalba1@gmail.com"
+        }
+    ],
+    "require": {}
+}
