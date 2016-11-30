@@ -26,6 +26,9 @@ Example output:
       "Adventure",
       "Comedy"
    ],
-   "cover_photo":"https:\/\/images-na.ssl-images-amazon.com\/images\/M\/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_UY1200_CR96,0,630,1200_AL_.jpg"
+   "cover_photo":"https:\/\/images-na.ssl-images-amazon.com\/images\/M\/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_UY1200_CR96,0,630,1200_AL_.jpg",
+   "director":"Tim Miller",
+   "writers":["Rhett Reese,","Paul Wernick"],
+   "stars":["Ryan Reynolds,","Morena Baccarin,","T.J. Miller"]
 }
 ```

@@ -15,19 +15,19 @@ class MovieResponseParser
     {
         $crawler = new Crawler($rawMovieResponse);
 
-        $title = $crawler->filter('.title_wrapper h1')->first()->text();
+        $title = $crawler->filter('#title-overview-widget h1')->first()->text();
         list($title, $year) = explode('&nbsp;', htmlentities($title));
         $title = trim($title);
         $year = preg_replace('/[^\d]+/i', '', $year);
 
-        $description = $crawler->filter('.summary_text')->first()->text();
+        $description = $crawler->filter('#title-overview-widget .summary_text')->first()->text();
         $description = trim($description);
 
-        $rating = $crawler->filter('span[itemprop="ratingValue"]')->first()->text();
-        $rating_count = $crawler->filter('span[itemprop="ratingCount"]')->first()->text();
+        $rating = $crawler->filter('#title-overview-widget span[itemprop="ratingValue"]')->first()->text();
+        $rating_count = $crawler->filter('#title-overview-widget span[itemprop="ratingCount"]')->first()->text();
         $rating_count = str_replace(',', '', $rating_count);
 
-        $categories = $crawler->filter('span[itemprop="genre"]')->each(function(Crawler $innerCrawler) {
+        $categories = $crawler->filter('#title-overview-widget span[itemprop="genre"]')->each(function(Crawler $innerCrawler) {
             return trim($innerCrawler->text());
         });
 
@@ -36,6 +36,16 @@ class MovieResponseParser
             $cover_photo = $anonymizer->getUnAnonymizedUrl($cover_photo);
         }
 
+        $director = trim($crawler->filter('#title-overview-widget span[itemprop="director"]')->text());
+
+        $writers = $crawler->filter('#title-overview-widget span[itemprop="creator"]')->each(function(Crawler $innerCrawler) {
+            return trim($innerCrawler->text());
+        });
+
+        $stars = $crawler->filter('#title-overview-widget span[itemprop="actors"]')->each(function(Crawler $innerCrawler) {
+            return trim($innerCrawler->text());
+        });
+
         $movieDetailsArray = compact(
             'title',
             'year',
@@ -43,7 +53,10 @@ class MovieResponseParser
             'rating',
             'rating_count',
             'categories',
-            'cover_photo'
+            'cover_photo',
+            'director',
+            'writers',
+            'stars'
         );
 
         return $movieDetailsArray;
