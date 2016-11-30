@@ -6,7 +6,7 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class MovieResponseParser
 {
-    public function parseCurlResponseToJson($rawMovieResponse)
+    public function parseCurlResponseToArray($rawMovieResponse)
     {
         $crawler = new Crawler($rawMovieResponse);
 
@@ -26,13 +26,20 @@ class MovieResponseParser
             return trim($innerCrawler->text());
         });
 
-        return json_encode(compact(
+        $movieDetailsArray = compact(
             'title',
             'year',
             'description',
             'rating',
             'rating_count',
             'categories'
-        ));
+        );
+
+        return $movieDetailsArray;
+    }
+
+    public function parseCurlResponseToJson($rawMovieResponse)
+    {
+        return json_encode($this->parseCurlResponseToArray($rawMovieResponse));
     }
 }
