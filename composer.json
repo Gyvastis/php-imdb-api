@@ -8,5 +8,7 @@
             "email": "shibalba1@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "curl/curl": "^1.5"
+    }
 }
