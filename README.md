@@ -21,11 +21,8 @@ Example output:
    "description":"A fast-talking mercenary with a morbid sense of humor is subjected to a rogue experiment that leaves him with accelerated healing powers and a quest for revenge.",
    "rating":"8.1",
    "rating_count":"544384",
-   "categories":[
-      "Action",
-      "Adventure",
-      "Comedy"
-   ],
+   "genres":["Action", "Adventure", "Comedy", "Romance", "Sci-Fi"],
+   "keywords":["breaking the fourth wall","self healing","based on comic book","mercenary","mutant"],
    "cover_photo":"https:\/\/images-na.ssl-images-amazon.com\/images\/M\/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_UY1200_CR96,0,630,1200_AL_.jpg",
    "director":"Tim Miller",
    "writers":["Rhett Reese,","Paul Wernick"],

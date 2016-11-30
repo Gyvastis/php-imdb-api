@@ -27,7 +27,11 @@ class MovieResponseParser
         $rating_count = $crawler->filter('#title-overview-widget span[itemprop="ratingCount"]')->first()->text();
         $rating_count = str_replace(',', '', $rating_count);
 
-        $categories = $crawler->filter('#title-overview-widget span[itemprop="genre"]')->each(function(Crawler $innerCrawler) {
+        $genres = $crawler->filter('#titleStoryLine div[itemprop="genre"] > a')->each(function(Crawler $innerCrawler) {
+            return trim($innerCrawler->text());
+        });
+
+        $keywords = $crawler->filter('#titleStoryLine div[itemprop="keywords"] span[itemprop="keywords"]')->each(function(Crawler $innerCrawler) {
             return trim($innerCrawler->text());
         });
 
@@ -52,7 +56,8 @@ class MovieResponseParser
             'description',
             'rating',
             'rating_count',
-            'categories',
+            'genres',
+            'keywords',
             'cover_photo',
             'director',
             'writers',
