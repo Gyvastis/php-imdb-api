@@ -15,6 +15,9 @@ class MovieResponseParser
         $title = trim($title);
         $year = preg_replace('/[^\d]+/i', '', $year);
 
-        return json_encode(compact('title', 'year'));
+        $description = $crawler->filter('.summary_text')->first()->text();
+        $description = trim($description);
+
+        return json_encode(compact('title', 'year', 'description'));
     }
 }
