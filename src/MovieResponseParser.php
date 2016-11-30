@@ -18,6 +18,10 @@ class MovieResponseParser
         $description = $crawler->filter('.summary_text')->first()->text();
         $description = trim($description);
 
-        return json_encode(compact('title', 'year', 'description'));
+        $rating = $crawler->filter('span[itemprop="ratingValue"]')->first()->text();
+        $rating_count = $crawler->filter('span[itemprop="ratingCount"]')->first()->text();
+        $rating_count = str_replace(',', '', $rating_count);
+
+        return json_encode(compact('title', 'year', 'description', 'rating', 'rating_count'));
     }
 }

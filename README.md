@@ -1,6 +1,7 @@
 # php-imdb-api
 A simple & lightweight IMDb movie details scraper with an anonymizer.
 
+Example usage:
 ```php
 require_once 'vendor/autoload.php';
 
