@@ -9,7 +9,9 @@
         }
     ],
     "require": {
-        "curl/curl": "^1.5"
+        "curl/curl": "^1.5",
+        "symfony/dom-crawler": "^3.2",
+        "symfony/css-selector": "^3.2"
     },
     "autoload": {
         "psr-4": {"IMDb\\": "src/"}

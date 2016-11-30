@@ -8,6 +8,6 @@ require_once 'vendor/autoload.php';
 
 $imdb = new \IMDb\IMDb(new \IMDb\RequestHandler(), new \IMDb\MovieResponseParser(), new \IMDb\Anonymizer());
 
-$movieDetailsJson = $imdb->getMovieById('1431045');
+$movieDetailsJson = $imdb->getMovieById('1431045', true);
 
 var_dump($movieDetailsJson);

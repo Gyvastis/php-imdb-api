@@ -19,7 +19,6 @@ class RequestHandler
         $curl->setOpt(CURLOPT_FOLLOWLOCATION, true);
 
         $curl->get($url, $params);
-        var_dump($curl);
 
         if ($curl->error) {
             throw new CurlException($curl->error_code . ': '. $curl->error_message);
