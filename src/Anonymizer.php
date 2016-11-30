@@ -14,4 +14,13 @@ class Anonymizer
     {
         return $this->anonymizerUrl . $url;
     }
+
+    /**
+     * @param string $url
+     * @return string $url
+     */
+    public function getUnAnonymizedUrl($url)
+    {
+        return str_replace($this->anonymizerUrl, '', $url);
+    }
 }

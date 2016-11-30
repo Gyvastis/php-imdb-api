@@ -6,7 +6,12 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class MovieResponseParser
 {
-    public function parseCurlResponseToArray($rawMovieResponse)
+    /**
+     * @param string $rawMovieResponse
+     * @param null|Anonymizer $anonymizer
+     * @return array
+     */
+    public function parseCurlResponseToArray($rawMovieResponse, $anonymizer = null)
     {
         $crawler = new Crawler($rawMovieResponse);
 
@@ -26,20 +31,31 @@ class MovieResponseParser
             return trim($innerCrawler->text());
         });
 
+        $cover_photo = $crawler->filter('link[rel="image_src"]')->attr('href');
+        if($anonymizer !== null){
+            $cover_photo = $anonymizer->getUnAnonymizedUrl($cover_photo);
+        }
+
         $movieDetailsArray = compact(
             'title',
             'year',
             'description',
             'rating',
             'rating_count',
-            'categories'
+            'categories',
+            'cover_photo'
         );
 
         return $movieDetailsArray;
     }
 
-    public function parseCurlResponseToJson($rawMovieResponse)
+    /**
+     * @param string $rawMovieResponse
+     * @param null|Anonymizer $anonymizer
+     * @return string
+     */
+    public function parseCurlResponseToJson($rawMovieResponse, $anonymizer = null)
     {
-        return json_encode($this->parseCurlResponseToArray($rawMovieResponse));
+        return json_encode($this->parseCurlResponseToArray($rawMovieResponse, $anonymizer));
     }
 }

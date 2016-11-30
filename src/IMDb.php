@@ -37,7 +37,7 @@ class IMDb
         $this->anonymizer = $anonymizer;
     }
 
-    public function getMovieById($moveId, $anonymize = true)
+    public function getMovieDetailsById($moveId, $anonymize = true)
     {
         $movieUrl = sprintf($this->getImdbMovieUrl(), $moveId);
 
@@ -48,7 +48,10 @@ class IMDb
         try {
             $rawMovieResponse = $this->getRequestHandler()->processRequestUrl($movieUrl);
 
-            return $this->getMovieResponseParser()->parseCurlResponseToJson($rawMovieResponse);
+            return $this->getMovieResponseParser()->parseCurlResponseToJson(
+                $rawMovieResponse,
+                $anonymize ? $this->getAnonymizer() : null
+            );
         }
         catch(CurlException $ex){
             var_dump($ex->getMessage());

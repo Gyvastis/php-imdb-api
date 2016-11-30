@@ -7,7 +7,8 @@ require_once 'vendor/autoload.php';
 
 $imdb = new \IMDb\IMDb(new \IMDb\RequestHandler(), new \IMDb\MovieResponseParser(), new \IMDb\Anonymizer());
 
-$movieDetailsJson = $imdb->getMovieById('1431045', true);
+// Actual movie URL being http://www.imdb.com/title/tt1431045/
+$movieDetailsJson = $imdb->getMovieDetailsById('1431045', true);
 
 var_dump($movieDetailsJson);
 ```
@@ -24,6 +25,7 @@ Example output:
       "Action",
       "Adventure",
       "Comedy"
-   ]
+   ],
+   "cover_photo":"https:\/\/images-na.ssl-images-amazon.com\/images\/M\/MV5BMjQyODg5Njc4N15BMl5BanBnXkFtZTgwMzExMjE3NzE@._V1_UY1200_CR96,0,630,1200_AL_.jpg"
 }
 ```
